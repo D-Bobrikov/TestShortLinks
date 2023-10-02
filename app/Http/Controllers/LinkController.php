@@ -53,6 +53,7 @@ class LinkController extends Controller
                 'full_reference' => $request->full_reference,
                 'short_reference' => $shortReference,
                 'source_id' => $source['id'],
+                'created_at' => time(),
             ]);
 
             $this->limitAndNotification($source);
@@ -101,7 +102,7 @@ class LinkController extends Controller
         $hourAgo = time() - 3600;
         $countLink = Link::where('source_id', $source['id'])
             ->where('created_at', '>', $hourAgo)
-            ->count();
+            ->get();
 
         if ($countLink > 10) {
             $this->bot->sendLog('Источник '.$source['name'].' выходит за лимит - '.$countLink.' ссылок сокращены...');

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('source_id')->nullable();
             $table->index('source_id', 'link_source_idx');
             $table->foreign('source_id', 'link_source_fk')->on('sources')->references('id');
-            $table->timestamps();
+            $table->integer('created_at');
         });
     }
 
