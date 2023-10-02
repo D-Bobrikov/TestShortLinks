@@ -53,6 +53,7 @@ class LinkController extends Controller
                 'full_reference' => $request->full_reference,
                 'short_reference' => $shortReference,
                 'source_id' => $source['id'],
+                'created_at' => time(),
             ]);
 
             $this->limitAndNotification($source);
